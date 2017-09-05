@@ -25,3 +25,10 @@ This project is intended to give you an introduction to all aspects of the field
 ## Literature
 
 - Chrome Experiments- Creative Applications- Matthew Butterick – Practial Typography- Gemma Copeland – Internet Explorers- Code Academy - PHP
+
+## What we've discussed in class
+
+### Week 2
+
+- [The PHP manual](http://php.net/manual)
+- [CatalogTree](http://www.catalogtree.net)
