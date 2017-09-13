@@ -32,3 +32,8 @@ This project is intended to give you an introduction to all aspects of the field
 
 - [The PHP manual](http://php.net/manual)
 - [CatalogTree](http://www.catalogtree.net)
+
+### Week 3
+
+- [The SQL manual](https://www.w3schools.com/sql/)
+- [CSS Tricks](https://css-tricks.com/)
