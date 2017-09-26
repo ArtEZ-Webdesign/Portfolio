@@ -1,0 +1,46 @@
+body {
+	margin: 0;
+}
+
+.projects {
+	overflow: hidden;
+
+	margin: 0 auto;
+	width: 100vw;
+	height: 100vh;
+
+	background: #eee;
+
+	position: relative;
+}
+
+.project {
+	transition: left .5s ease-in-out, top .5s ease-in-out;
+
+	position: absolute;
+
+	background: blue;
+
+	width: 500px;
+
+	transform: translate(-50%, -50%);
+}
+
+.project img {
+	width: 100%;
+	height: auto;
+}
+
+.menu {
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	background: white;
+	width: 200px;
+	padding: 10px;
+}
+
+li {
+	cursor: pointer;
+}
