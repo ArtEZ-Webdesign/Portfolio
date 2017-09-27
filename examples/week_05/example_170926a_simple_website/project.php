@@ -4,14 +4,12 @@ $id = $_GET["id"];
 $db = new mysqli("localhost", "root", "root", "portfolio", 8889);
 
 $query = $db->query(
-	"SELECT projects.id, projects.title, projects.description, images.filename, tags.name AS tag
+	"SELECT projects.id, projects.title, projects.description, images.filename AS image, tags.name AS tag
 
 	FROM projects
 
 	LEFT JOIN projects_x_tags ON projects.id = projects_x_tags.project_id
-
 	LEFT JOIN tags ON projects_x_tags.tag_id = tags.id
-
 	LEFT JOIN projects_x_images ON projects_x_images.project_id = projects.id
 	LEFT JOIN images ON projects_x_images.image_id = images.id
 
@@ -19,19 +17,39 @@ $query = $db->query(
 );
 
 $projectsFromDatabase = $query->fetch_all(MYSQLI_ASSOC);
-$projectFromDatabase = $projectsFromDatabase[0];
 
 $projects = array();
 
 foreach($projectsFromDatabase as $project) {
 	$id = $project["id"];
-	$filename = $project["filename"];
+
+	$tag = $project["tag"];
+	$image = $project["image"];
 
 	if (isset($projects[$id])) {
-		array_push($projects[$id]["filename"], $filename);
+		if (!in_array($tag, $projects[$id]["tags"])) {
+			array_push($projects[$id]["tags"], $tag);
+		}
+
+		if (!in_array($image, $projects[$id]["images"])) {
+			array_push($projects[$id]["images"], $image);
+		}
 	} else {
-		$project["filename"] = array($filename);
-		$projects[$id] = $project;
+		$projects[$id] = array(
+			"id" => $project["id"],
+			"title" => $project["title"],
+			"description" => $project["description"],
+			"tags" => array(),
+			"images" => array()
+		);
+
+		if (isset($tag)) {
+			array_push($projects[$id]["tags"], $tag);
+		}
+
+		if (isset($image)) {
+			array_push($projects[$id]["images"], $image);
+		}
 	}
 }
 
@@ -58,11 +76,11 @@ $project = $projects[$id];
 				<?= $project["description"] ?>
 			</div>
 			<div class="column tag">
-				<?= $project["tag"] ?>
+				<?= join(", ", $project["tags"]) ?>
 			</div>
 		</div>
-		<?php foreach ($project["filename"] as $image) { ?>
-			<img src="img/<?= $image ?>.jpg" width="100%">
+		<?php foreach ($project["images"] as $image) { ?>
+			<img src="img/<?= $image ?>.jpg">
 		<?php } ?>
 	</div>
 </body>
