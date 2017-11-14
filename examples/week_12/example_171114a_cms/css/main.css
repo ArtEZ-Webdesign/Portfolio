@@ -1,0 +1,34 @@
+.projects {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 800px;
+}
+
+.project {
+	width: 100%;
+
+	padding-bottom: 10px;
+	border-bottom: 5px solid black;
+	margin-bottom: 10px;
+}
+
+.column {
+	box-sizing: border-box;
+	padding: 20px;
+	float: left;
+	width: 33%;
+}
+
+.project:after {
+	content: '';
+	clear: both;
+	display: table;
+}
+
+.fullsize {
+	width: 100%;
+}
+
+.thumbnail {
+	width: 100px;
+}
